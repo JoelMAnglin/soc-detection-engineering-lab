@@ -1,0 +1,4 @@
+index=cloud sourcetype="wiz:issues" severity="critical" exposure="public"
+| stats count values(resource) AS resources values(control) AS controls BY cloud_account
+| eval rule_id="SOC-CLOUD-001", severity="critical", mitre_technique="T1530"
+

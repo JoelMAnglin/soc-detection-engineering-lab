@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SignalForge SOC Lab</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span>SF</span> SIGNALFORGE</div>
+    <div class="environment"><i></i> SYNTHETIC LAB</div>
+    <nav>
+      <a class="active" href="#overview">Command center</a>
+      <a href="#alerts">Alert queue</a>
+      <a href="#coverage">Detection coverage</a>
+      <a href="#spl">SPL workbench</a>
+    </nav>
+    <div class="guard"><b>SAFE MODE</b><span>No live remediation<br>No paid APIs</span></div>
+  </aside>
+  <main>
+    <header><div><small>SOC DETECTION ENGINEERING LAB</small><h1>Security command center</h1><p>Threat detection, triage, hunting, tuning, and incident readiness.</p></div><div class="status"><i></i> LAB HEALTHY</div></header>
+    <section id="metrics" class="metrics"><article><span>EVENTS INGESTED</span><strong>—</strong><small>Across security platforms</small></article><article><span>DETECTION ALERTS</span><strong>—</strong><small>Rule-generated findings</small></article><article><span>CRITICAL QUEUE</span><strong>—</strong><small>Requires immediate triage</small></article><article><span>DETECTION RATE</span><strong>—</strong><small>Synthetic validation signal</small></article></section>
+    <section class="layout">
+      <article class="panel alert-panel" id="alerts"><div class="panel-head"><div><span>PRIORITIZED WORK</span><h2>Analyst alert queue</h2></div><button id="refresh">Refresh</button></div><div class="table-wrap"><table><thead><tr><th>SEVERITY</th><th>DETECTION</th><th>ENTITY</th><th>MITRE</th><th>STATUS</th></tr></thead><tbody id="alerts-body"></tbody></table></div></article>
+      <aside class="right-column">
+        <article class="panel"><div class="panel-head"><div><span>TELEMETRY</span><h2>Source health</h2></div></div><div id="sources"></div><p class="disclosure"><b>CrowdStrike validation:</b> schema-compatible synthetic Falcon events. No commercial tenant connection is claimed.</p></article>
+        <article class="panel" id="coverage"><div class="panel-head"><div><span>MITRE ATT&amp;CK</span><h2>Technique coverage</h2></div></div><div id="techniques"></div></article>
+      </aside>
+    </section>
+    <section class="panel spl" id="spl"><div class="panel-head"><div><span>SPLUNK ES / CORE</span><h2>SPL detection workbench</h2></div><span class="badge">6 production-style searches</span></div><pre><code>index=edr sourcetype="crowdstrike:events" event_simpleName=ProcessRollup2
+| eval process=lower(FileName), parent=lower(ParentBaseFileName)
+| where process="powershell.exe" AND parent IN ("winword.exe","excel.exe")
+| stats count values(CommandLine) BY aid ComputerName UserName
+| eval rule_id="SOC-EDR-001", severity="critical"</code></pre></section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
+

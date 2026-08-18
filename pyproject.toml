@@ -1,0 +1,10 @@
+[project]
+name = "soc-detection-engineering-lab"
+version = "1.0.0"
+description = "Containerized SOC detection engineering portfolio lab"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+
+[tool.ruff]
+line-length = 100
+

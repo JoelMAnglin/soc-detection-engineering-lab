@@ -1,0 +1,6 @@
+index=edr sourcetype="crowdstrike:events" event_simpleName=ProcessRollup2
+| eval process=lower(FileName), parent=lower(ParentBaseFileName)
+| where parent IN ("chrome.exe","msedge.exe","firefox.exe") AND process IN ("cmd.exe","powershell.exe","wscript.exe")
+| table _time aid ComputerName UserName ParentBaseFileName FileName CommandLine SHA256HashData
+| eval rule_id="SOC-EDR-003", severity="high", mitre_technique="T1059.003"
+

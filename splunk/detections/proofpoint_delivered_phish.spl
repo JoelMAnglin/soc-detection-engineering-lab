@@ -1,0 +1,4 @@
+index=email sourcetype="proofpoint:tap" threat_type="credential_phishing" delivery_status="delivered"
+| stats count values(sender) AS senders values(url) AS urls BY recipient
+| eval rule_id="SOC-EMAIL-001", severity="high", mitre_technique="T1566.002"
+

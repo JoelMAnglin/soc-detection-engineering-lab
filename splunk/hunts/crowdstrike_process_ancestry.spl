@@ -1,0 +1,6 @@
+index=edr sourcetype="crowdstrike:events" event_simpleName=ProcessRollup2 earliest=-24h
+| eval process_path=ParentBaseFileName." -> ".FileName
+| stats count dc(aid) AS endpoint_count values(CommandLine) AS sample_commands BY process_path
+| where count < 5 OR match(process_path,"(?i)(office|browser).* -> (powershell|cmd|wscript)")
+| sort count
+

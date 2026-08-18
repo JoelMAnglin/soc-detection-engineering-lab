@@ -1,0 +1,4 @@
+index=proxy sourcetype="zscaler:nss" action="blocked" threat_category="malware_callback"
+| stats count values(destination) AS destinations BY user host
+| eval rule_id="SOC-NET-001", severity="high", mitre_technique="T1071.001"
+

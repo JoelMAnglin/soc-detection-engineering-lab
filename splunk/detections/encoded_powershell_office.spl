@@ -1,0 +1,8 @@
+index=edr sourcetype="crowdstrike:events" event_simpleName=ProcessRollup2
+| eval process=lower(FileName), parent=lower(ParentBaseFileName), command=lower(CommandLine)
+| where process="powershell.exe" AND parent IN ("winword.exe","excel.exe","outlook.exe")
+  AND (like(command,"%-enc%") OR like(command,"%frombase64string%"))
+| stats count min(_time) AS first_seen max(_time) AS last_seen values(CommandLine) AS commands
+  BY aid ComputerName UserName ParentBaseFileName FileName SHA256HashData
+| eval rule_id="SOC-EDR-001", severity="critical", mitre_technique="T1059.001"
+
