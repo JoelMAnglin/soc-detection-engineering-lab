@@ -87,6 +87,7 @@ The lab validates this content structurally. Executing searches in Splunk requir
 
 ## Documentation
 
+- [Recruiter walkthrough PowerPoint](presentations/SignalForge-Recruiter-Walkthrough.pptx) — ten-slide project narrative with detailed interview study notes on every slide
 - [Architecture](docs/ARCHITECTURE.md)
 - [Beginner setup](docs/SETUP.md)
 - [SOC analyst runbook](docs/ANALYST_RUNBOOK.md)
@@ -107,4 +108,3 @@ The lab validates this content structurally. Executing searches in Splunk requir
 ## License
 
 MIT. CrowdStrike, Falcon, Proofpoint, Wiz, Zscaler, Splunk, MITRE ATT&CK, and other marks belong to their respective owners. This independent educational project is not endorsed by those organizations.
-

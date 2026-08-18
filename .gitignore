@@ -1,8 +1,10 @@
 __pycache__/
 *.py[cod]
+.deck-build/
+presentations/SignalForge-Recruiter-Walkthrough/
+*.pptx.inspect.ndjson
 *.db
 .env
 .venv/
 reports/*.json
 !reports/.gitkeep
-
